@@ -40,8 +40,7 @@ def main():
         emoji = sticker['emoji']
         print(f"Adding sticker {fname} ({emoji})")
         Bot.add_sticker_to_set(user_id=USER_ID, name=sticker_name,
-                             emojis=emoji, webm_sticker=open(fname, "rb"))
-        
+                            emojis=emoji, webm_sticker=open(fname, "rb"))   
 
 if __name__ == '__main__':
     main()
