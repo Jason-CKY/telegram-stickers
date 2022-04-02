@@ -18,18 +18,30 @@ def parse_arguments():
 
 def main():
     args = parse_arguments()
-    print(Bot.get_me()['username'])
     sticker_data = json.load(open(f"{args.dir}/mapping.json", "r"))
+    sticker_name = f"peepo_by_{Bot.get_me()['username']}"
     stickers = sticker_data['stickers']
     try:
         print("Finding existing Stickerset...")
-        Bot.get_sticker_set(name=sticker_data['name'])
+        sticker_set = Bot.get_sticker_set(name=sticker_data['name'])
     except BadRequest:
         print("Stickerset not found, creating one...")
-        Bot.create_new_sticker_set(user_id=USER_ID, name=f"peepo_by_{Bot.get_me()['username']}", title=sticker_data["title"], 
+        Bot.create_new_sticker_set(user_id=USER_ID, name=sticker_name, title=sticker_data["title"], 
                                     emojis=stickers[0]['emoji'], webm_sticker=open(f"{args.dir}/src/{stickers[0]['file']}", "rb"))
-        return
-    # pass
+        sticker_set = Bot.get_sticker_set(name=sticker_data['name'])
+    
+    # Delete all stickers in set
+    print("Deleting all existing stickers in stickerset...")
+    for sticker in sticker_set['stickers']:
+        Bot.delete_sticker_from_set(sticker=sticker['file_id'])
+    # Add stickers to stickerset, effectively updating all stickers in stickerset with what's inside the tracked repo
+    for sticker in stickers:
+        fname = f"{args.dir}/src/{sticker['file']}"
+        emoji = sticker['emoji']
+        print(f"Adding sticker {fname} ({emoji})")
+        Bot.add_sticker_to_set(user_id=USER_ID, name=sticker_name,
+                             emojis=emoji, webm_sticker=open(fname, "rb"))
+        
 
 if __name__ == '__main__':
     main()
