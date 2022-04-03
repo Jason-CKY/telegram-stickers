@@ -16,3 +16,4 @@ jobs:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           USER_ID: ${{ secrets.USER_ID }}
         run: python stickers.py
+        run: echo Hello World
