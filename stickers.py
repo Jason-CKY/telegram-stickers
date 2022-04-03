@@ -19,16 +19,16 @@ def parse_arguments():
 def main():
     args = parse_arguments()
     sticker_data = json.load(open(f"{args.dir}/mapping.json", "r"))
-    sticker_name = f"peepo_by_{Bot.get_me()['username']}"
+    sticker_name = f"{sticker_data['name']}_by_{Bot.get_me()['username']}"
     stickers = sticker_data['stickers']
     try:
         print("Finding existing Stickerset...")
-        sticker_set = Bot.get_sticker_set(name=sticker_data['name'])
+        sticker_set = Bot.get_sticker_set(name=sticker_name)
     except BadRequest:
         print("Stickerset not found, creating one...")
         Bot.create_new_sticker_set(user_id=USER_ID, name=sticker_name, title=sticker_data["title"], 
                                     emojis=stickers[0]['emoji'], webm_sticker=open(f"{args.dir}/src/{stickers[0]['file']}", "rb"))
-        sticker_set = Bot.get_sticker_set(name=sticker_data['name'])
+        sticker_set = Bot.get_sticker_set(name=sticker_name)
     
     # Delete all stickers in set
     print("Deleting all existing stickers in stickerset...")
