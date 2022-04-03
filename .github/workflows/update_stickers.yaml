@@ -11,4 +11,8 @@ jobs:
         with:
           python-version: '3.9'
       - run: pip install -r requirements.txt
-      - run: python stickers.py
+      - name: update with secrets
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          USER_ID: ${{ secrets.USER_ID }}
+        run: python stickers.py
