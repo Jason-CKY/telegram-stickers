@@ -25,8 +25,4 @@ Sticker Pack:
 
 Usually animated files comes in .gif format. To convert into telegram compatible format:
 
-1. [Convert .png file to .gif file if needed](https://www.onlineconverter.com/png-to-gif)
-
-2. [Resize .gif file to 512x512 size](https://www.onlineconverter.com/resize-image)
-
-3. [Convert .gif into .webm](https://www.onlineconverter.com/gif-to-webm)
+run `python convert.py --dir peepo_emotes` to automatically detect any png/gif files and convert them to a telegram compatible .webm format.
