@@ -93,6 +93,10 @@
         {
             "file": "prayge.webm",
             "emoji": "🙏"
+        },
+        {
+            "file": "sad_twitch_emote.webm",
+            "emoji": "😰"
         }
     ]
 }
