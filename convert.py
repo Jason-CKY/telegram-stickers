@@ -4,6 +4,7 @@ from utils import *
 from pathlib import Path
 
 conversion_mappings = {
+    '.jpg': jpg_to_webm,
     ".png": png_to_webm,
     '.gif': gif_to_webm
 }

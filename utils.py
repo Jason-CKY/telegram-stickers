@@ -5,6 +5,12 @@ from pathlib import Path
 
 IMG_SIZE = (512, 512)
 
+def jpg_to_webm(fpath: Path):
+    img = Image.open(fpath)
+    img.save(fpath.with_suffix('.png'))
+    png_to_webm(fpath.with_suffix('.png'))
+    os.remove(fpath.with_suffix('.png'))
+    
 def png_to_webm(fpath: Path):
     img = Image.open(fpath)
     img = img.resize(IMG_SIZE)
