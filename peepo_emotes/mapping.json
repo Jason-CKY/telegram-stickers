@@ -137,6 +137,14 @@
         {
             "file": "suspicious-fry.webm",
             "emoji": "🤨"
+        },
+        {
+            "file": "peaceout.webm",
+            "emoji": "✌️"
+        },
+        {
+            "file": "shrug.webm",
+            "emoji": "🤷‍♂️"
         }
     ]
 }
